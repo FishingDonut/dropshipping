@@ -6,8 +6,8 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { FieldErrors, useForm } from "react-hook-form";
 
-export default function FormLogin() {
-    const loginSchema = z.object({
+export default function FormRegister() {
+    const registerSchema = z.object({
         fullName: z.string().min(4, "Minimo 4 caracteres."),
         email: z.string().email("Tem que ser um email."),
         password: z.string().min(8, "Minimo 8 caracteres."),
@@ -17,17 +17,17 @@ export default function FormLogin() {
         message: "As senhas não coincidem."
     });
 
-    type LoginSchema = z.infer<typeof loginSchema>
+    type RegisterSchema = z.infer<typeof registerSchema>
 
-    const { register, handleSubmit, formState: { errors } } = useForm<LoginSchema>({
-        resolver: zodResolver(loginSchema)
+    const { register, handleSubmit, formState: { errors } } = useForm<RegisterSchema>({
+        resolver: zodResolver(registerSchema)
     });
 
-    const handleLoginForm = (data: LoginSchema) => {
+    const handleRegisterForm = (data: RegisterSchema) => {
         console.log(data.fullName);
     }
 
-    const handleFormErrors = (errors: FieldErrors<LoginSchema>) => {
+    const handleFormErrors = (errors: FieldErrors<RegisterSchema>) => {
         console.error(errors);
     }
 
@@ -54,7 +54,7 @@ export default function FormLogin() {
     };
 
     return (
-        <form onSubmit={handleSubmit(handleLoginForm, handleFormErrors)}>
+        <form onSubmit={handleSubmit(handleRegisterForm, handleFormErrors)}>
             {/* Start input fullName */}
             <Box sx={customBoxInput}>
                 <Input {...register('fullName')} name="fullName" placeholder="Write your name" label="Full Name" mensageError={errors.fullName?.message}></Input>
