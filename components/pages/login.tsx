@@ -1,15 +1,8 @@
-import { Button, Box, Typography, FormLabel } from "@mui/material";
+import { Button, Box, Typography } from "@mui/material";
 import Input from "../layouts/Input/Input";
 
 export default function Login() {
     const margin = 16;
-
-    const customInput = {
-        color: "white",
-        "&::before": { borderBottom: "0 solid rgba(0,0,0,0)" },
-        "&:hover": { borderBottom: "2px solid #707070" },
-        "&::after": { borderBottom: "2px solid #ffff" },
-    };
 
     const customBoxMain = {
         position: "center",
