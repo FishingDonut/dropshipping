@@ -25,8 +25,8 @@ export default function Login() {
 
             {/* Start Title */}
             <Box sx={customBoxInput}>
-                <Typography variant="h4">Login in account</Typography>
-                <Typography variant="subtitle1">Access your account</Typography>
+                <Typography variant="h4" sx={{color: "white"}}>Login in account</Typography>
+                <Typography variant="subtitle1" sx={{color: "gray"}}>Access your account</Typography>
             </Box>
             {/* End Title */}
 
