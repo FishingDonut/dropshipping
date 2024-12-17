@@ -20,7 +20,7 @@ export default function Input({name, placeholder = "", label = "", type = "text"
     return (
         <>
             <FormLabel htmlFor={name} sx={{ color: "white" }}>{label}</FormLabel>
-            <InputMui id={name} name={name} sx={customInput} placeholder={placeholder} type={type} {...res}></InputMui>
+            <InputMui id={name} name={name} sx={customInput} placeholder={placeholder} type={type} {...res} autoComplete="off"></InputMui>
             <Typography sx={{color: "red"}} variant="subtitle1">{mensageError}</Typography>
         </>
     );

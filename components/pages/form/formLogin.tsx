@@ -11,9 +11,9 @@ export default function FormLogin() {
         fullName: z.string().min(4, "Minimo 4 caracteres."),
         email: z.string().email("Tem que ser um email."),
         password: z.string().min(8, "Minimo 8 caracteres."),
-        passwordC: z.string().min(8, "Minimo 8 caracteres.")
-    }).refine((data) => data.password === data.passwordC, {
-        path: ['passwordC'],
+        passwordConfirm: z.string().min(8, "Minimo 8 caracteres.")
+    }).refine((data) => data.password === data.passwordConfirm, {
+        path: ['passwordConfirm'],
         message: "As senhas não coincidem."
     });
 
@@ -73,11 +73,11 @@ export default function FormLogin() {
             </Box>
             {/* End input password */}
             
-            {/* Start input passwordC */}
+            {/* Start input passwordConfirm */}
             <Box sx={customBoxInput}>
-                <Input {...register('passwordC')} name="passwordC" type="password" placeholder="********" label="passwordC" mensageError={errors.passwordC?.message}></Input>
+                <Input {...register('passwordConfirm')} name="passwordConfirm" type="password" placeholder="********" label="Password Confirm" mensageError={errors.passwordConfirm?.message}></Input>
             </Box>
-            {/* End input passwordC */}
+            {/* End input passwordConfirm */}
 
             {/* Start Terms */}
             <Box sx={customBoxTems}>
