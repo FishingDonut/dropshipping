@@ -1,13 +1,14 @@
-import { FormLabel, Input as InputMui } from "@mui/material";
+import { FormLabel, Input as InputMui, Typography } from "@mui/material";
 
 interface InputProps {
     name: string,
     placeholder: string,
     label: string,
-    type?: string
+    type?: string,
+    mensageError?: string | undefined
 }
 
-export default function Input({name, placeholder = "", label = "", type = "text"}: InputProps) {
+export default function Input({name, placeholder = "", label = "", type = "text", mensageError="", ...res }: InputProps) {
 
     const customInput = {
         color: "white",
@@ -19,7 +20,8 @@ export default function Input({name, placeholder = "", label = "", type = "text"
     return (
         <>
             <FormLabel htmlFor={name} sx={{ color: "white" }}>{label}</FormLabel>
-            <InputMui id={name} name={name} sx={customInput} placeholder={placeholder} type={type}></InputMui>
+            <InputMui id={name} name={name} sx={customInput} placeholder={placeholder} type={type} {...res}></InputMui>
+            <Typography sx={{color: "red"}} variant="subtitle1">{mensageError}</Typography>
         </>
     );
 }
