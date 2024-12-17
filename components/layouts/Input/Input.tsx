@@ -4,7 +4,7 @@ interface InputProps {
     name: string,
     placeholder: string,
     label: string,
-    type: string
+    type?: string
 }
 
 export default function Input({name, placeholder = "", label = "", type = "text"}: InputProps) {
