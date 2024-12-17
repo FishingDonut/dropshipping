@@ -1,5 +1,5 @@
-import { Box, Typography, FormLabel, Input } from "@mui/material";
-import Button from "@mui/material/Button";
+import { Button, Box, Typography, FormLabel } from "@mui/material";
+import Input from "../layouts/Input/Input";
 
 export default function Login() {
     const margin = 16;
@@ -19,7 +19,7 @@ export default function Login() {
         alignItems: 'center',
         height: '100vh'
     };
-    
+
     const customBoxInput = {
         marginBottom: margin + 'px',
         display: 'flex',
@@ -53,34 +53,31 @@ export default function Login() {
 
             {/* Start input fullName */}
             <Box sx={customBoxInput}>
-                <FormLabel htmlFor="fullName" sx={{ color: "white" }}>Full Name</FormLabel>
-                <Input id="fullName" sx={customInput} placeholder="Write your name"></Input>
+                <Input name="fullName" placeholder="Write your name" label="Full Name"></Input>
             </Box>
             {/* End input fullName */}
 
             {/* Start input email */}
             <Box sx={customBoxInput}>
-                <FormLabel htmlFor="email" sx={{ color: "white" }}>Email</FormLabel>
-                <Input id="email" sx={customInput} placeholder="Write your email"></Input>
+                <Input name="email" type="email" placeholder="Write your email" label="Email"></Input>
             </Box>
             {/* End input email */}
 
             {/* Start input password */}
             <Box sx={customBoxInput}>
-                <FormLabel htmlFor="password" sx={{ color: "white" }}>Password</FormLabel>
-                <Input id="password" sx={customInput} type="password" placeholder="********"></Input>
+                <Input name="password" type="password" placeholder="********" label="Password"></Input>
             </Box>
             {/* End input password */}
 
             {/* Start Terms */}
             <Box sx={customBoxTems}>
-                <Typography variant="subtitle1">By signing up you agree to our <span style={{textDecoration: 'underline'}}>Terms</span>, <span style={{textDecoration: 'underline'}}>Privacy Policy</span>, and <span style={{textDecoration: 'underline'}}>Cookie Use</span></Typography>
+                <Typography variant="subtitle1">By signing up you agree to our <span style={{ textDecoration: 'underline' }}>Terms</span>, <span style={{ textDecoration: 'underline' }}>Privacy Policy</span>, and <span style={{ textDecoration: 'underline' }}>Cookie Use</span></Typography>
             </Box>
             {/* End Terms */}
 
             {/* Start Button */}
             <Box sx={customBoxButton}>
-                <Button sx={{ color: "white", backgroundColor: "gray", borderRadius: "5px" }} variant="contained">Create an Account</Button>
+                <Button sx={{ color: "white", backgroundColor: "gray", borderRadius: "5px" }} type="submit" variant="contained">Create an Account</Button>
             </Box>
             {/* End Button */}
         </Box>
