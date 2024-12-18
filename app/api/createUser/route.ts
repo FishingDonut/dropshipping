@@ -13,9 +13,10 @@ export async function POST(request: NextRequest) {
             return  NextResponse.json({ error: 'All fields are required' }, { status: 400 });
         }
 
-        console.log(fullName, email, password);
+        const newUser = await CreateUsersService({fullName: fullName, email: email, password: password});
 
-        const newUser = await CreateUsersService(body);
+        console.log(newUser);
+
         return new Response(JSON.stringify(newUser), { status: 201 });
     } catch (error) {
         return new Response(JSON.stringify({ message: error }), { status: 500 });
