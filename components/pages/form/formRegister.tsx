@@ -23,8 +23,17 @@ export default function FormRegister() {
         resolver: zodResolver(registerSchema)
     });
 
-    const handleRegisterForm = (data: RegisterSchema) => {
-        console.log(data.fullName);
+    const handleRegisterForm = async (data: RegisterSchema) => {
+        try {
+            const response = await fetch("/api/createUser", {
+                method: "POST",
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify(data)
+            })
+            console.log(response.json());
+        } catch (error) {
+          console.log(error);  
+        }
     }
 
     const handleFormErrors = (errors: FieldErrors<RegisterSchema>) => {
