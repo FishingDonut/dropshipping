@@ -3,14 +3,36 @@
 import { Button, Box, Typography } from "@mui/material";
 import Input from "@/components/layouts/Input/Input";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
+import { FieldErrors, useForm } from "react-hook-form";
 import { registerSchema, RegisterSchema } from "./registerSchema";
-import { handleRegisterFormSuccess, handleFormErrors } from "./handleRegisterForm";
 
 export default function FormRegister() {
     const { register, handleSubmit, formState: { errors } } = useForm<RegisterSchema>({
         resolver: zodResolver(registerSchema)
     });
+
+    const handleRegisterFormSuccess = async (data: RegisterSchema) => {
+        try {
+            const response = await fetch("/api/createUser", {
+                method: "POST",
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify(data)
+            })
+            
+            if(!response.ok){
+                throw new Error("Failed to register user");
+            }
+
+            const result = await response.json();
+            return {'success': true, data: result};
+        } catch (error) {
+          console.log(error);  
+        }
+    }
+
+    const handleFormErrors = (errors: FieldErrors<RegisterSchema>) => {
+        console.error(errors);
+    }
 
     const margin = 16;
 

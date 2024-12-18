@@ -15,8 +15,6 @@ export async function POST(request: NextRequest) {
 
         const newUser = await CreateUsersService({fullName: fullName, email: email, password: password});
 
-        console.log(newUser);
-
         return new Response(JSON.stringify(newUser), { status: 201 });
     } catch (error) {
         return new Response(JSON.stringify({ message: error }), { status: 500 });
