@@ -2,43 +2,15 @@
 
 import { Button, Box, Typography } from "@mui/material";
 import Input from "@/components/layouts/Input/Input";
-import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { FieldErrors, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
+import { registerSchema, RegisterSchema } from "./registerSchema";
+import { handleRegisterFormSuccess, handleFormErrors } from "./handleRegisterForm";
 
 export default function FormRegister() {
-    const registerSchema = z.object({
-        fullName: z.string().min(4, "Minimo 4 caracteres."),
-        email: z.string().email("Tem que ser um email."),
-        password: z.string().min(8, "Minimo 8 caracteres."),
-        passwordConfirm: z.string().min(8, "Minimo 8 caracteres.")
-    }).refine((data) => data.password === data.passwordConfirm, {
-        path: ['passwordConfirm'],
-        message: "As senhas não coincidem."
-    });
-
-    type RegisterSchema = z.infer<typeof registerSchema>
-
     const { register, handleSubmit, formState: { errors } } = useForm<RegisterSchema>({
         resolver: zodResolver(registerSchema)
     });
-
-    const handleRegisterForm = async (data: RegisterSchema) => {
-        try {
-            const response = await fetch("/api/createUser", {
-                method: "POST",
-                headers: {'Content-Type': 'application/json'},
-                body: JSON.stringify(data)
-            })
-            console.log(response.json());
-        } catch (error) {
-          console.log(error);  
-        }
-    }
-
-    const handleFormErrors = (errors: FieldErrors<RegisterSchema>) => {
-        console.error(errors);
-    }
 
     const margin = 16;
 
@@ -63,7 +35,7 @@ export default function FormRegister() {
     };
 
     return (
-        <form onSubmit={handleSubmit(handleRegisterForm, handleFormErrors)}>
+        <form onSubmit={handleSubmit(handleRegisterFormSuccess, handleFormErrors)}>
             {/* Start input fullName */}
             <Box sx={customBoxInput}>
                 <Input {...register('fullName')} name="fullName" placeholder="Write your name" label="Full Name" mensageError={errors.fullName?.message}></Input>
