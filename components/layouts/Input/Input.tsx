@@ -1,5 +1,4 @@
 import { Input as InputMui, FormControl, FormHelperText, InputLabel } from "@mui/material";
-
 interface InputProps {
     name: string,
     placeholder: string,
