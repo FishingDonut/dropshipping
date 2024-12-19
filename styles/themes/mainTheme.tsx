@@ -8,7 +8,7 @@ export default function ThemeMain({ children }: Readonly<{
 }>) {
   const theme = createTheme({
     palette: {
-      mode: 'light',
+      mode: 'dark',
       primary: {
         main: '#baf329',
       },
