@@ -25,8 +25,8 @@ export default function Register() {
 
             {/* Start Title */}
             <Box sx={customBoxInput}>
-                <Typography variant="h4">Create an account</Typography>
-                <Typography variant="subtitle1">Lets create your account</Typography>
+                <Typography color="primary" variant="h4">Create an account</Typography>
+                <Typography color="gray" variant="subtitle1">Lets create your account</Typography>
             </Box>
             {/* End Title */}
 

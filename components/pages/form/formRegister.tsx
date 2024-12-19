@@ -84,7 +84,7 @@ export default function FormRegister() {
 
             {/* Start Terms */}
             <Box sx={customBoxTems}>
-                <Typography variant="subtitle1">By signing up you agree to our <span style={{ textDecoration: 'underline' }}>Terms</span>, <span style={{ textDecoration: 'underline' }}>Privacy Policy</span>, and <span style={{ textDecoration: 'underline' }}>Cookie Use</span></Typography>
+                <Typography color="gray" variant="subtitle1">By signing up you agree to our <Typography component="span" color="secondary" style={{ textDecoration: 'underline' }}>Terms</Typography>, <Typography component="span" color="secondary" style={{ textDecoration: 'underline' }}>Privacy Policy</Typography>, and <Typography component="span" color="secondary" style={{ textDecoration: 'underline' }}>Cookie Use</Typography></Typography>
             </Box>
             {/* End Terms */}
 
