@@ -1,4 +1,9 @@
+import { Box, CircularProgress } from "@mui/material";
 
 export default function Loading(){
-    return (<h1>ESPERE</h1>);
+    return (
+        <Box sx={{display:'flex',justifyContent:'center', height: '100vh'}}>
+            <CircularProgress color="primary" />
+        </Box>
+        );
 }
