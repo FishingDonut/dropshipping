@@ -1,7 +1,6 @@
 "use client";
 
 import { createTheme } from '@mui/material/styles';
-import { green, purple } from '@mui/material/colors';
 import { ThemeProvider } from '@emotion/react';
 
 export default function ThemeMain({ children }: Readonly<{
@@ -9,11 +8,12 @@ export default function ThemeMain({ children }: Readonly<{
 }>) {
   const theme = createTheme({
     palette: {
+      mode: 'light',
       primary: {
-        main: purple[500],
+        main: '#baf329',
       },
       secondary: {
-        main: green[500],
+        main: '#6229f3',
       },
     },
   });
