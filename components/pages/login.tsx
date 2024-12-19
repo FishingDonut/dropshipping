@@ -1,7 +1,7 @@
 import { Box, Typography } from "@mui/material";
 import FormRegister from "./form/formRegister";
 
-export default function Register() {
+export default function Login() {
     const margin = 16;
 
     const customBoxMain = {
