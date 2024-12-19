@@ -84,13 +84,13 @@ export default function FormRegister() {
 
             {/* Start Terms */}
             <Box sx={customBoxTems}>
-                <Typography color="gray" variant="subtitle1">By signing up you agree to our <Typography component="span" color="secondary" style={{ textDecoration: 'underline' }}>Terms</Typography>, <Typography component="span" color="secondary" style={{ textDecoration: 'underline' }}>Privacy Policy</Typography>, and <Typography component="span" color="secondary" style={{ textDecoration: 'underline' }}>Cookie Use</Typography></Typography>
+                <Typography color="gray" variant="subtitle1">By signing up you agree to our <Typography component="span" color="white" style={{ textDecoration: 'underline' }}>Terms</Typography>, <Typography component="span" color="white" style={{ textDecoration: 'underline' }}>Privacy Policy</Typography>, and <Typography component="span" color="white" style={{ textDecoration: 'underline' }}>Cookie Use</Typography></Typography>
             </Box>
             {/* End Terms */}
 
             {/* Start Button */}
             <Box sx={customBoxButton}>
-                <Button sx={{ color: "white", backgroundColor: "gray", borderRadius: "5px" }} type="submit" variant="contained">Create an Account</Button>
+                <Button color="secondary" sx={{ borderRadius: "5px" }} type="submit" variant="contained">Create an Account</Button>
             </Box>
             {/* End Button */}
         </form>

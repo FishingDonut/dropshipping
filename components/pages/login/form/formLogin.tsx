@@ -70,7 +70,7 @@ export default function FormLogin() {
 
             {/* Start Button */}
             <Box sx={customBoxButton}>
-                <Button sx={{ color: "white", backgroundColor: "gray", borderRadius: "5px" }} type="submit" variant="contained">Login your Account</Button>
+                <Button color="secondary" sx={{ borderRadius: "5px" }} type="submit" variant="contained">Login your Account</Button>
             </Box>
             {/* End Button */}
         </form>
