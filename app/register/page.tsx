@@ -1,3 +1,3 @@
-import Login from "@/components/pages/login";
+import Register from "@/components/pages/register/register";
 
-export default Login;
+export default Register;
