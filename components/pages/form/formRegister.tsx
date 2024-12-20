@@ -5,6 +5,7 @@ import Input from "@/components/layouts/Input/Input";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { FieldErrors, useForm } from "react-hook-form";
 import { registerSchema, RegisterSchema } from "./registerSchema";
+import Link from 'next/link';
 
 export default function FormRegister() {
     const { register, handleSubmit, formState: { errors } } = useForm<RegisterSchema>({
@@ -84,7 +85,7 @@ export default function FormRegister() {
 
             {/* Start Terms */}
             <Box sx={customBoxTems}>
-                <Typography color="gray" variant="subtitle1">By signing up you agree to our <Typography component="span" color="white" style={{ textDecoration: 'underline' }}>Terms</Typography>, <Typography component="span" color="white" style={{ textDecoration: 'underline' }}>Privacy Policy</Typography>, and <Typography component="span" color="white" style={{ textDecoration: 'underline' }}>Cookie Use</Typography></Typography>
+                <Typography color="gray" variant="subtitle1">By signing up you agree to our <Typography component={Link} href="/terms" color="white" style={{ textDecoration: 'underline' }}>Terms</Typography>, <Typography component="span" color="white" style={{ textDecoration: 'underline' }}>Privacy Policy</Typography>, and <Typography component="span" color="white" style={{ textDecoration: 'underline' }}>Cookie Use</Typography></Typography>
             </Box>
             {/* End Terms */}
 
