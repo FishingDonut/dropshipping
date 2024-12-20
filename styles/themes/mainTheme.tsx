@@ -10,9 +10,9 @@ export default function ThemeMain({ children }: Readonly<{
     palette: {
       mode: 'dark',
       primary: {
-        main: '#baf329',
-        light: '#cff974',
-        dark: '#93b100',
+        main: '#cdfd54',
+        light: '#e1fe9e',
+        dark: '#bae823',
         contrastText: '#fff',
       },
       secondary: {
@@ -20,6 +20,10 @@ export default function ThemeMain({ children }: Readonly<{
         light: '#9a71f8',
         dark: '#2114df',
         contrastText: '#fff',
+      },
+      background: {
+        default: '#151515',
+        paper:'#151515'
       },
     },
   });
