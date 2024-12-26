@@ -26,12 +26,11 @@ const authOptions = {
           })
         });
 
-        const body = await response.json();
-        console.log(response.status);
-        console.log(body);
+        if(! await response.ok){
+          return null; 
+        }
 
-        return null;
-
+        return await response.json();
       }
     })
   ],

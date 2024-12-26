@@ -26,10 +26,11 @@ export default function FormLogin() {
           email,
           password,
           redirect: true,
-          callbackUrl: "/",
+          callbackUrl: "/dashboard",
         });
     
-        alert(result);
+        console.log(result);
+        alert(result?.ok);
         
         if (!result?.ok) {
           alert("Falha no login. Verifique suas credenciais.");

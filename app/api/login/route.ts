@@ -1,4 +1,4 @@
-import { NextRequest, NextResponse } from "next/server";
+import { NextRequest } from "next/server";
 import { Prisma } from "@prisma/client";
 import { prisma } from "@/services/PristmaClientService";
 
@@ -32,7 +32,7 @@ export async function POST(request: NextRequest){
         });
     }
     
-    return new Response(JSON.stringify({ message: loginUser}), {
+    return new Response(JSON.stringify(loginUser), {
         status: 200,
         headers: { 'Content-Type': 'application/json' }
     });    
