@@ -5,6 +5,7 @@ import Input from "@/components/layouts/Input/Input";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { FieldErrors, useForm } from "react-hook-form";
+import { signIn } from "next-auth/react";
 
 export default function FormLogin() {
     const loginSchema = z.object({
@@ -18,11 +19,27 @@ export default function FormLogin() {
         resolver: zodResolver(loginSchema)
     });
 
-    const handleLoginForm = (data: LoginSchema) => {
-        console.log(data);
-    }
+    const handleLoginFormSuccess = async (data: LoginSchema) => {
+        const { email, password } = data;
+    
+        const result = await signIn("credentials", {
+          email,
+          password,
+          redirect: true,
+          callbackUrl: "/",
+        });
+    
+        alert(result);
+        
+        if (!result?.ok) {
+          alert("Falha no login. Verifique suas credenciais.");
+        } else {
+            alert("OXI?")
+        }
+      };
 
     const handleFormErrors = (errors: FieldErrors<LoginSchema>) => {
+        console.error('Esta dando erro aqui');
         console.error(errors);
     }
 
@@ -49,7 +66,7 @@ export default function FormLogin() {
     };
 
     return (
-        <form onSubmit={handleSubmit(handleLoginForm, handleFormErrors)}>
+        <form onSubmit={handleSubmit(handleLoginFormSuccess, handleFormErrors)}>
             {/* Start input email */}
             <Box sx={customBoxInput}>
                 <Input {...register('email')} name="email" type="email" placeholder="Write your email" label="Email" mensageError={errors.email?.message}></Input>
