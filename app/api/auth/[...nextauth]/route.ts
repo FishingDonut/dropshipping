@@ -1,8 +1,32 @@
-import NextAuth from "next-auth";
+import NextAuth, { NextAuthOptions  } from "next-auth";
 import GitHubProvider from "next-auth/providers/github";
 import CredentialsProvider from "next-auth/providers/credentials";
 
-export const authOptions = {
+declare module "next-auth" {
+  interface Session {
+    user: {
+      id: string;
+      email: string;
+      fullName: string;
+    };
+  }
+
+  interface User {
+    id: string;
+    email: string;
+    fullName: string;
+  }
+}
+
+declare module "next-auth/jwt" {
+  interface JWT {
+    id: string;
+    email: string;
+    fullName: string;
+  }
+}
+
+export const authOptions: NextAuthOptions = {
   providers: [
     GitHubProvider({
       clientId: process.env.GITHUB_ID ?? "",
@@ -26,13 +50,14 @@ export const authOptions = {
             })
           });
 
-          if (! await response.ok) {
+          if (!response.ok) {
+            console.error("Failed to authorize user.");
             return null;
           }
 
           return await response.json();
-        } catch (Error) {
-          console.error(Error);
+        } catch (error) {
+          console.error("Error during authorization:", error);
           return null
         }
       }
