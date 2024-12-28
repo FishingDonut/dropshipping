@@ -25,15 +25,13 @@ export const authOptions = {
               password: credentials?.password
             })
           });
-          
-          if(! await response.ok){
-            return null; 
+
+          if (! await response.ok) {
+            return null;
           }
-          
-          const user = await response.json();
-          
-          return user;
-        } catch(Error) {
+
+          return await response.json();
+        } catch (Error) {
           console.error(Error);
           return null
         }
@@ -41,8 +39,8 @@ export const authOptions = {
     })
   ],
   callbacks: {
-    async jwt({ token, user}){
-      if(!user){
+    async jwt({ token, user }) {
+      if (!user) {
         return token;
       }
 
@@ -52,7 +50,7 @@ export const authOptions = {
       return token;
     },
 
-    async session({ session, token }){
+    async session({ session, token }) {
       session.user.id = token.id;
       session.user.email = token.email;
       session.user.fullName = token.fullName;
