@@ -2,7 +2,7 @@ import NextAuth from "next-auth";
 import GitHubProvider from "next-auth/providers/github";
 import CredentialsProvider from "next-auth/providers/credentials";
 
-const authOptions = {
+export const authOptions = {
   providers: [
     GitHubProvider({
       clientId: process.env.GITHUB_ID ?? "",
@@ -30,10 +30,36 @@ const authOptions = {
           return null; 
         }
 
-        return await response.json();
+        const user = await response.json();
+
+        return user;
       }
     })
   ],
+  callbacks: {
+    async jwt({ token, user}){
+      console.log("JWT Callback: ", { token, user });
+
+      if(!user){
+        return token;
+      }
+
+      token.id = user.id;
+      token.email = user.email;
+      token.fullName = user.fullName;
+      return token;
+    },
+
+    async session({ session, token }){
+      console.log("Session Callback: ", { session, token });
+
+      session.user.id = token.id;
+      session.user.email = token.email;
+      session.user.fullName = token.fullName;
+
+      return session;
+    }
+  },
   pages: {
     signIn: "/login",
   }
