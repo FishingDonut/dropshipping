@@ -4,8 +4,6 @@ import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 export default async function Page(){
     const session = await getServerSession(authOptions);
 
-    console.log(session);
-
     if(!session){
         return <h1>NAO</h1>
     }

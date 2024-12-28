@@ -29,7 +29,6 @@ export default function FormLogin() {
           callbackUrl: "/dashboard",
         });
     
-        console.log(result);
         alert(result?.ok);
         
         if (!result?.ok) {
