@@ -1,5 +1,4 @@
 import NextAuth, { NextAuthOptions  } from "next-auth";
-import GitHubProvider from "next-auth/providers/github";
 import CredentialsProvider from "next-auth/providers/credentials";
 
 declare module "next-auth" {
@@ -84,5 +83,4 @@ export const authOptions: NextAuthOptions = {
   }
 };
 
-const handler = NextAuth(authOptions);
-export { handler as GET, handler as POST };
+export default NextAuth(authOptions);
