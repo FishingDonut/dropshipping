@@ -16,23 +16,27 @@ export const authOptions = {
         password: { label: "Password", type: "password" }
       },
       async authorize(credentials) {
-
-        const response = await fetch(`${process.env.NEXTAUTH_URL}/api/login/`, {
-          method: "POST",
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            email: credentials?.email,
-            password: credentials?.password
-          })
-        });
-
-        if(! await response.ok){
-          return null; 
+        try {
+          const response = await fetch(`${process.env.NEXTAUTH_URL}/api/login/`, {
+            method: "POST",
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              email: credentials?.email,
+              password: credentials?.password
+            })
+          });
+          
+          if(! await response.ok){
+            return null; 
+          }
+          
+          const user = await response.json();
+          
+          return user;
+        } catch(Error) {
+          console.error(Error);
+          return null
         }
-
-        const user = await response.json();
-
-        return user;
       }
     })
   ],
