@@ -6,12 +6,16 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { FieldErrors, useForm } from "react-hook-form";
 import { registerSchema, RegisterSchema } from "./registerSchema";
 import Link from 'next/link';
+import { useRouter } from "next/navigation";
+
 
 export default function FormRegister() {
     const { register, handleSubmit, formState: { errors } } = useForm<RegisterSchema>({
         resolver: zodResolver(registerSchema)
     });
-
+    
+    const router = useRouter();
+    
     const handleRegisterFormSuccess = async (data: RegisterSchema) => {
         try {
             const response = await fetch("/api/register", {
@@ -23,6 +27,8 @@ export default function FormRegister() {
             if(!response.ok){
                 throw new Error("Failed to register user");
             }
+
+            router.push('/login');
 
             const result = await response.json();
             return {'success': true, data: result};
