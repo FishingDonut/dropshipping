@@ -39,7 +39,6 @@ export default function FormLogin() {
         if(!result){
             return;
         } else if (result?.status != 200) {
-            console.log('set value');
             setMenssageError(result?.error);
             return;
         } else {

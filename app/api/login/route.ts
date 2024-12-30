@@ -19,14 +19,14 @@ export async function POST(request: NextRequest){
     });
 
     if (!loginUser) {
-        return new Response(JSON.stringify({ error: "User not found" }), {
+        return new Response(JSON.stringify({ error: "authentication error" }), {
             status: 400,
             headers: { 'Content-Type': 'application/json' }
         });
     }
     
     if (loginUser.password !== password) {
-        return new Response(JSON.stringify({ error: "Wrong password" }), {
+        return new Response(JSON.stringify({ error: "authentication error" }), {
             status: 400,
             headers: { 'Content-Type': 'application/json' }
         });
