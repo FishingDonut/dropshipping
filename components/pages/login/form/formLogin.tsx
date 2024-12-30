@@ -37,10 +37,10 @@ export default function FormLogin() {
         if(!result){
             return;
         } else if (result?.status != 200) {
-            setMenssageError(result?.error);
+            setMenssageError(result?.error || "Erro Login");
             return;
         } else {
-            setMenssageError(null);
+            setMenssageError("");
             router.push('/dashboard');
         }
       };
