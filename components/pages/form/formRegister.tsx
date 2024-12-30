@@ -3,36 +3,42 @@
 import { Button, Box, Typography } from "@mui/material";
 import Input from "@/components/layouts/Input/Input";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { FieldErrors, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { registerSchema, RegisterSchema } from "./registerSchema";
 import Link from 'next/link';
+import { useRouter } from "next/navigation";
+import { useContext } from "react";
+import { MessageErrorContext } from "@/context/auth/MessageErrorContext";
+
 
 export default function FormRegister() {
     const { register, handleSubmit, formState: { errors } } = useForm<RegisterSchema>({
         resolver: zodResolver(registerSchema)
     });
-
+    
+    const router = useRouter();
+    const {setMessageError} = useContext(MessageErrorContext);
+    
     const handleRegisterFormSuccess = async (data: RegisterSchema) => {
         try {
-            const response = await fetch("/api/createUser", {
+            const response = await fetch("/api/register", {
                 method: "POST",
                 headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify(data)
             })
             
             if(!response.ok){
-                throw new Error("Failed to register user");
+                const erroData = await response.json();
+                setMessageError(erroData?.message || "Failed to register user");
             }
 
-            const result = await response.json();
-            return {'success': true, data: result};
+            if(response.status == 201){
+                setMessageError("");
+                router.push('/login');
+            }
         } catch (error) {
           console.log(error);  
         }
-    }
-
-    const handleFormErrors = (errors: FieldErrors<RegisterSchema>) => {
-        console.error(errors);
     }
 
     const margin = 16;
@@ -58,7 +64,7 @@ export default function FormRegister() {
     };
 
     return (
-        <form onSubmit={handleSubmit(handleRegisterFormSuccess, handleFormErrors)}>
+        <form onSubmit={handleSubmit(handleRegisterFormSuccess)}>
             {/* Start input fullName */}
             <Box sx={customBoxInput}>
                 <Input {...register('fullName')} name="fullName" placeholder="Write your name" label="Full Name" mensageError={errors.fullName?.message}></Input>

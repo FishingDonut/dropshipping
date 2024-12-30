@@ -4,7 +4,11 @@ import { Button, Box, Typography } from "@mui/material";
 import Input from "@/components/layouts/Input/Input";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { FieldErrors, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
+import { signIn } from "next-auth/react";
+import { useRouter } from "next/navigation";
+import { MessageErrorContext, MessageErrorContextProps} from "@/context/auth/MessageErrorContext";
+import { useContext } from 'react';
 
 export default function FormLogin() {
     const loginSchema = z.object({
@@ -18,13 +22,28 @@ export default function FormLogin() {
         resolver: zodResolver(loginSchema)
     });
 
-    const handleLoginForm = (data: LoginSchema) => {
-        console.log(data);
-    }
+    const router = useRouter();
+    const { setMessageError } = useContext<MessageErrorContextProps>(MessageErrorContext);
 
-    const handleFormErrors = (errors: FieldErrors<LoginSchema>) => {
-        console.error(errors);
-    }
+    const handleLoginFormSuccess = async (data: LoginSchema) => {
+        const { email, password } = data;
+    
+        const result = await signIn("credentials", {
+          email,
+          password,
+          redirect: false
+        });
+
+        if(!result){
+            return;
+        } else if (result?.status != 200) {
+            setMessageError(result?.error || "Erro Login");
+            return;
+        } else {
+            setMessageError("");
+            router.push('/dashboard');
+        }
+      };
 
     const margin = 16;
 
@@ -49,7 +68,7 @@ export default function FormLogin() {
     };
 
     return (
-        <form onSubmit={handleSubmit(handleLoginForm, handleFormErrors)}>
+        <form onSubmit={handleSubmit(handleLoginFormSuccess)}>
             {/* Start input email */}
             <Box sx={customBoxInput}>
                 <Input {...register('email')} name="email" type="email" placeholder="Write your email" label="Email" mensageError={errors.email?.message}></Input>

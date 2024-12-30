@@ -1,5 +1,7 @@
 import { Box, Typography } from "@mui/material";
 import FormLogin from "./form/formLogin";
+import { MessageErrorProvider } from "@/context/auth/MessageErrorContext";
+import { Error } from "../../layouts/error/error";
 
 export default function Login() {
     const margin = 16;
@@ -20,21 +22,27 @@ export default function Login() {
     };
 
     return (
-        // start box main
-        <Box sx={customBoxMain}>
+        <MessageErrorProvider>
+            {/* start box main */}
+            <Box sx={customBoxMain}>
 
-            {/* Start Title */}
-            <Box sx={customBoxInput}>
-                <Typography variant="h4" sx={{color: "white"}}>Login in account</Typography>
-                <Typography variant="subtitle1" sx={{color: "gray"}}>Access your account</Typography>
+                {/* Start Error */}
+                <Error/>
+                {/* End Error */}
+
+                {/* Start Title */}
+                <Box sx={customBoxInput}>
+                    <Typography variant="h4" sx={{ color: "white" }}>Login in account</Typography>
+                    <Typography variant="subtitle1" sx={{ color: "gray" }}>Access your account</Typography>
+                </Box>
+                {/* End Title */}
+
+                {/* Start Form */}
+                <FormLogin></FormLogin>
+                {/* End Form */}
+
             </Box>
-            {/* End Title */}
-
-            {/* Start Form */}
-            <FormLogin></FormLogin>
-            {/* End Form */}
-
-        </Box>
-        // end box main
+            {/* end box main */}
+        </MessageErrorProvider>
     )
 }
