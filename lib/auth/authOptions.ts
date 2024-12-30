@@ -52,8 +52,8 @@ export const authOptions: NextAuthOptions = {
 
           return await response.json();
         } catch (error) {
-        throw new Error(error);
-        }
+          const errorMessage = error instanceof Error ? error.message : String(error);
+          throw new Error(errorMessage);        }
       },
     }),
   ],
