@@ -28,7 +28,8 @@ export default function FormRegister() {
             })
             
             if(!response.ok){
-                setMenssageError("Failed to register user");
+                const erroData = await response.json();
+                setMenssageError(erroData?.message || "Failed to register user");
             }
 
             if(response.status == 201){
