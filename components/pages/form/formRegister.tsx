@@ -7,6 +7,8 @@ import { useForm } from "react-hook-form";
 import { registerSchema, RegisterSchema } from "./registerSchema";
 import Link from 'next/link';
 import { useRouter } from "next/navigation";
+import { useContext } from "react";
+import { MenssageErrorContext } from "@/context/auth/MenssageErrorContext";
 
 
 export default function FormRegister() {
@@ -15,6 +17,7 @@ export default function FormRegister() {
     });
     
     const router = useRouter();
+    const {setMenssageError} = useContext(MenssageErrorContext);
     
     const handleRegisterFormSuccess = async (data: RegisterSchema) => {
         try {
@@ -25,10 +28,13 @@ export default function FormRegister() {
             })
             
             if(!response.ok){
-                throw new Error("Failed to register user");
+                setMenssageError("Failed to register user");
             }
 
-            router.push('/login');
+            if(response.status == 201){
+                setMenssageError("");
+                router.push('/login');
+            }
         } catch (error) {
           console.log(error);  
         }
