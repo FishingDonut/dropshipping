@@ -1,6 +1,6 @@
 import { Box, Typography } from "@mui/material";
 import FormLogin from "./form/formLogin";
-import { MenssageErrorProvider } from "@/context/auth/MenssageErrorContext";
+import { MessageErrorProvider } from "@/context/auth/MessageErrorContext";
 import { Error } from "../../layouts/error/error";
 
 export default function Login() {
@@ -22,7 +22,7 @@ export default function Login() {
     };
 
     return (
-        <MenssageErrorProvider>
+        <MessageErrorProvider>
             {/* start box main */}
             <Box sx={customBoxMain}>
 
@@ -43,6 +43,6 @@ export default function Login() {
 
             </Box>
             {/* end box main */}
-        </MenssageErrorProvider>
+        </MessageErrorProvider>
     )
 }

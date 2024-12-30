@@ -7,7 +7,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
-import { MenssageErrorContext, MenssageErrorContextProps} from "@/context/auth/MenssageErrorContext";
+import { MessageErrorContext, MessageErrorContextProps} from "@/context/auth/MessageErrorContext";
 import { useContext } from 'react';
 
 export default function FormLogin() {
@@ -23,7 +23,7 @@ export default function FormLogin() {
     });
 
     const router = useRouter();
-    const { setMenssageError } = useContext<MenssageErrorContextProps>(MenssageErrorContext);
+    const { setMessageError } = useContext<MessageErrorContextProps>(MessageErrorContext);
 
     const handleLoginFormSuccess = async (data: LoginSchema) => {
         const { email, password } = data;
@@ -37,10 +37,10 @@ export default function FormLogin() {
         if(!result){
             return;
         } else if (result?.status != 200) {
-            setMenssageError(result?.error || "Erro Login");
+            setMessageError(result?.error || "Erro Login");
             return;
         } else {
-            setMenssageError("");
+            setMessageError("");
             router.push('/dashboard');
         }
       };

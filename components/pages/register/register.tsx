@@ -1,7 +1,7 @@
 import { Box, Typography } from "@mui/material";
 import FormRegister from "../form/formRegister";
 import { Error } from "../../layouts/error/error";
-import { MenssageErrorProvider } from "@/context/auth/MenssageErrorContext";
+import { MessageErrorProvider } from "@/context/auth/MessageErrorContext";
 
 export default function Register() {
     const margin = 16;
@@ -22,7 +22,7 @@ export default function Register() {
     };
 
     return (
-        <MenssageErrorProvider>
+        <MessageErrorProvider>
             {/* start box main */}
             <Box sx={customBoxMain}>
 
@@ -43,6 +43,6 @@ export default function Register() {
 
             </Box>
             {/* end box main */}
-        </MenssageErrorProvider>
+        </MessageErrorProvider>
     )
 }

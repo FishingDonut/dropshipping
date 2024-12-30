@@ -1,11 +1,11 @@
 'use client';
 
 import { Box, Typography } from "@mui/material"
-import { MenssageErrorContext, MenssageErrorContextProps} from "@/context/auth/MenssageErrorContext";
+import { MessageErrorContext, MessageErrorContextProps} from "@/context/auth/MessageErrorContext";
 import { useContext } from 'react';
 
 export const Error = () => {
-    const { menssageError } = useContext<MenssageErrorContextProps>(MenssageErrorContext);
+    const { messageError } = useContext<MessageErrorContextProps>(MessageErrorContext);
 
     const margin = 16;
 
@@ -15,13 +15,13 @@ export const Error = () => {
         flexDirection: 'column',
     };
 
-    if(!menssageError){
+    if(!messageError){
         return;
     }
 
     return (
         <Box sx={customBoxError}>
-            <Typography color="error">{menssageError}</Typography>
+            <Typography color="error">{messageError}</Typography>
         </Box>
     );
 }
