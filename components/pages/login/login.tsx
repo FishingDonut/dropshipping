@@ -1,7 +1,7 @@
 import { Box, Typography } from "@mui/material";
 import FormLogin from "./form/formLogin";
 import { MenssageErrorProvider } from "@/context/auth/MenssageErrorContext";
-import { Error } from "./error/error";
+import { Error } from "../../layouts/error/error";
 
 export default function Login() {
     const margin = 16;
