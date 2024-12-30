@@ -37,10 +37,6 @@ export default function FormRegister() {
         }
     }
 
-    const handleFormErrors = (errors: FieldErrors<RegisterSchema>) => {
-        console.error(errors);
-    }
-
     const margin = 16;
 
     const customBoxInput = {
@@ -64,7 +60,7 @@ export default function FormRegister() {
     };
 
     return (
-        <form onSubmit={handleSubmit(handleRegisterFormSuccess, handleFormErrors)}>
+        <form onSubmit={handleSubmit(handleRegisterFormSuccess)}>
             {/* Start input fullName */}
             <Box sx={customBoxInput}>
                 <Input {...register('fullName')} name="fullName" placeholder="Write your name" label="Full Name" mensageError={errors.fullName?.message}></Input>

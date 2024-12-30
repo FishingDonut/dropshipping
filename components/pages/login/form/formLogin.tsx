@@ -46,10 +46,6 @@ export default function FormLogin() {
         }
       };
 
-    const handleFormErrors = (errors: FieldErrors<LoginSchema>) => {
-        console.error(errors);
-    }
-
     const margin = 16;
 
     const customBoxInput = {
@@ -73,7 +69,7 @@ export default function FormLogin() {
     };
 
     return (
-        <form onSubmit={handleSubmit(handleLoginFormSuccess, handleFormErrors)}>
+        <form onSubmit={handleSubmit(handleLoginFormSuccess)}>
             {/* Start input email */}
             <Box sx={customBoxInput}>
                 <Input {...register('email')} name="email" type="email" placeholder="Write your email" label="Email" mensageError={errors.email?.message}></Input>
