@@ -47,13 +47,11 @@ export const authOptions: NextAuthOptions = {
 
           if (!response.ok) {
             const errorData = await response.json();
-            console.error("Authentication error:", errorData);
             throw new Error(errorData.error || "Authentication failed");
         }
 
           return await response.json();
         } catch (error) {
-        console.error("Authorization error:", error);
         throw new Error(error);
         }
       },
