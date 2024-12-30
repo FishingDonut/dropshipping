@@ -4,10 +4,10 @@ import { Button, Box, Typography } from "@mui/material";
 import Input from "@/components/layouts/Input/Input";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { FieldErrors, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
-import { MenssageErrorContext, MenssageErrorContextProps} from "@/context/login/MenssageErrorContext";
+import { MenssageErrorContext, MenssageErrorContextProps} from "@/context/auth/MenssageErrorContext";
 import { useContext } from 'react';
 
 export default function FormLogin() {
@@ -34,14 +34,13 @@ export default function FormLogin() {
           redirect: false
         });
 
-        console.error(result)
-
         if(!result){
             return;
         } else if (result?.status != 200) {
             setMenssageError(result?.error);
             return;
         } else {
+            setMenssageError(null);
             router.push('/dashboard');
         }
       };

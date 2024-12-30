@@ -1,6 +1,6 @@
 import { Box, Typography } from "@mui/material";
 import FormLogin from "./form/formLogin";
-import { MenssageErrorProvider } from "@/context/login/MenssageErrorContext";
+import { MenssageErrorProvider } from "@/context/auth/MenssageErrorContext";
 import { Error } from "./error/error";
 
 export default function Login() {
