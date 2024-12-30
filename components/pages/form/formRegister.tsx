@@ -3,7 +3,7 @@
 import { Button, Box, Typography } from "@mui/material";
 import Input from "@/components/layouts/Input/Input";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { FieldErrors, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { registerSchema, RegisterSchema } from "./registerSchema";
 import Link from 'next/link';
 import { useRouter } from "next/navigation";
@@ -29,9 +29,6 @@ export default function FormRegister() {
             }
 
             router.push('/login');
-
-            const result = await response.json();
-            return {'success': true, data: result};
         } catch (error) {
           console.log(error);  
         }
