@@ -46,14 +46,17 @@ export const authOptions: NextAuthOptions = {
           });
 
           if (!response.ok) {
-            console.error("Failed to authorize user.");
-            return null;
-          }
+            const errorData = await response.json();
+            console.error("Authentication error:", errorData);
+            throw new Error(errorData.message || "Authentication failed");
+        }
+        
 
           return await response.json();
+
         } catch (error) {
-          console.error("Error during authorization:", error);
-          return null;
+        console.error("Authorization error:", error);
+        throw new Error("Invalid credentials");
         }
       },
     }),
