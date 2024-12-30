@@ -6,6 +6,7 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { FieldErrors, useForm } from "react-hook-form";
 import { signIn } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 export default function FormLogin() {
     const loginSchema = z.object({
@@ -19,27 +20,28 @@ export default function FormLogin() {
         resolver: zodResolver(loginSchema)
     });
 
+    const router = useRouter();
+
     const handleLoginFormSuccess = async (data: LoginSchema) => {
         const { email, password } = data;
     
         const result = await signIn("credentials", {
           email,
           password,
-          redirect: true,
+          redirect: false,
           callbackUrl: "/dashboard",
         });
-    
-        alert(result?.ok);
-        
-        if (!result?.ok) {
-          alert("Falha no login. Verifique suas credenciais.");
+
+        if(!result){
+            return;
+        } else if (result?.status != 200) {
+            return;
         } else {
-            alert("OXI?")
+            router.push('/dashboard');
         }
       };
 
     const handleFormErrors = (errors: FieldErrors<LoginSchema>) => {
-        console.error('Esta dando erro aqui');
         console.error(errors);
     }
 
