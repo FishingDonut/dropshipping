@@ -48,12 +48,10 @@ export const authOptions: NextAuthOptions = {
           if (!response.ok) {
             const errorData = await response.json();
             console.error("Authentication error:", errorData);
-            throw new Error(errorData.message || "Authentication failed");
+            return errorData;
         }
-        
 
           return await response.json();
-
         } catch (error) {
         console.error("Authorization error:", error);
         throw new Error("Invalid credentials");
