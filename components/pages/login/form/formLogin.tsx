@@ -42,8 +42,8 @@ export default function FormLogin() {
             console.log('set value');
             setMenssageError(result?.error);
             return;
-        } else if ( result.status == 200) {
-            // router.push('/dashboard');
+        } else {
+            router.push('/dashboard');
         }
       };
 
