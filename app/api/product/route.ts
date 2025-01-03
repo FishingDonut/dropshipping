@@ -1,4 +1,4 @@
-import { GET as GetAll, POST as Create } from '@/controllers/ProductControllers';
+import { GET as GetAll, POST as Create } from '@/controllers/Product/ProductControllers';
 import { NextApiResponse } from 'next';
 import { NextRequest } from 'next/server';
 

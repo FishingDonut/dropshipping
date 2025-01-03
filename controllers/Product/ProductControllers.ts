@@ -1,9 +1,7 @@
+import ProductService from "@/services/ProductService";
 import { NextRequest } from "next/server";
+import { postSchema } from "./Schema/postSchema";
 import { z } from "zod";
-
-const postSchema = z.object({
-    name: z.string()
-})
 
 type PostRequestBody = z.infer<typeof postSchema>;
 
@@ -11,10 +9,12 @@ export const POST = async (req: NextRequest) => {
     const data: PostRequestBody | null = postSchema.parse(await req.json());
 
     if (data) {
+        const response = ProductService(data);
+
         return new Response(JSON.stringify({
             success: true,
             message: "Test ok",
-            data: data
+            data: response
         }), {
             status: 200,
             headers: {
