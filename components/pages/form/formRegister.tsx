@@ -77,12 +77,18 @@ export default function FormRegister() {
             </Box>
             {/* End input email */}
 
+            {/* Start input phone */}
+            <Box sx={customBoxInput}>
+                <Input {...register('phone')} name="phone" placeholder="Write your phone" label="Phone" mensageError={errors.phone?.message}></Input>
+            </Box>
+            {/* End input phone */}
+
             {/* Start input password */}
             <Box sx={customBoxInput}>
                 <Input {...register('password')} name="password" type="password" placeholder="********" label="Password" mensageError={errors.password?.message}></Input>
             </Box>
             {/* End input password */}
-            
+
             {/* Start input passwordConfirm */}
             <Box sx={customBoxInput}>
                 <Input {...register('passwordConfirm')} name="passwordConfirm" type="password" placeholder="********" label="Password Confirm" mensageError={errors.passwordConfirm?.message}></Input>
