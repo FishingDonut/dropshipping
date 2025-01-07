@@ -36,7 +36,7 @@ export const authOptions: NextAuthOptions = {
       },
       async authorize(credentials) {
         try {
-          const response = await fetch(`${process.env.NEXTAUTH_URL}/api/login/`, {
+          const response = await fetch(`${process.env.API_URL}login/`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
