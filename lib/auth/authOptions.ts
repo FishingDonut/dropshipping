@@ -2,29 +2,29 @@ import { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 
 declare module "next-auth" {
-    interface Session {
-      user: {
-        id: string;
-        email: string;
-        fullName: string;
-      };
-    }
-  
-    interface User {
+  interface Session {
+    user: {
       id: string;
       email: string;
       fullName: string;
-    }
+    };
   }
-  
-  declare module "next-auth/jwt" {
-    interface JWT {
-      id: string;
-      email: string;
-      fullName: string;
-    }
+
+  interface User {
+    id: string;
+    email: string;
+    fullName: string;
   }
-  
+}
+
+declare module "next-auth/jwt" {
+  interface JWT {
+    id: string;
+    email: string;
+    fullName: string;
+  }
+}
+
 export const authOptions: NextAuthOptions = {
   providers: [
     CredentialsProvider({
@@ -36,24 +36,27 @@ export const authOptions: NextAuthOptions = {
       },
       async authorize(credentials) {
         try {
-          const response = await fetch(`${process.env.API_URL}login/`, {
-            method: "POST",
+          const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}user/${credentials?.email}`, {
+            method: "GET",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-              email: credentials?.email,
-              password: credentials?.password,
-            }),
           });
 
           if (!response.ok) {
             const errorData = await response.json();
             throw new Error(errorData.error || "Authentication failed");
-        }
+          }
 
-          return await response.json();
+          const user = await response.json();
+
+          if (user.password !== credentials?.password || !user) {
+            throw new Error("Authentication failed");
+          }
+
+          return user;
         } catch (error) {
           const errorMessage = error instanceof Error ? error.message : String(error);
-          throw new Error(errorMessage);        }
+          throw new Error(errorMessage);
+        }
       },
     }),
   ],
