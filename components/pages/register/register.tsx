@@ -1,5 +1,5 @@
 import { Box, Typography } from "@mui/material";
-import FormRegister from "../form/formRegister";
+import FormRegister from "./form/formRegister";
 import { Error } from "../../layouts/error/error";
 import { MessageErrorProvider } from "@/context/auth/MessageErrorContext";
 
