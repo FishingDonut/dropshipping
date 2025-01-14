@@ -13,12 +13,12 @@ type MessageErrorProviderProps = {
 
 const MessageErrorContext = createContext({} as MessageErrorContextProps);
 
-const MessageErrorProvider: React.FC<MessageErrorProviderProps> = ({children}) => {
+const MessageErrorProvider: React.FC<MessageErrorProviderProps> = ({ children }) => {
     const [messageError, setMessageError] = useState<string>('');
 
     return (
         <MessageErrorContext.Provider value={{
-            messageError, 
+            messageError,
             setMessageError
         }}>
             {children}
@@ -26,4 +26,4 @@ const MessageErrorProvider: React.FC<MessageErrorProviderProps> = ({children}) =
     );
 }
 
-export { MessageErrorContext, MessageErrorProvider};
+export { MessageErrorContext, MessageErrorProvider };
