@@ -1,8 +1,9 @@
 'use client';
 
-import { Box } from "@mui/material";
+import { Box, Paper, styled } from "@mui/material";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import Grid from '@mui/material/Grid2';
 
 const MainProduct = () => {
     const [product, setProduct] = useState<any>(null);
@@ -25,23 +26,35 @@ const MainProduct = () => {
                 router.push('/');
             }
         }
-        fetchProductById(1);
+        // fetchProductById(1);
     }, []);
 
+    const Item = styled(Paper)(({ theme }) => ({
+        backgroundColor: '#fff',
+        ...theme.typography.body2,
+        padding: theme.spacing(1),
+        textAlign: 'center',
+        color: theme.palette.text.secondary,
+        ...theme.applyStyles('dark', {
+            backgroundColor: '#1A2027',
+        }),
+    }));
+
+
     return (
-        <Box display="flex"
-            flexDirection="column"
-            alignItems="center"
-            gap={2}
-            p={2}
-            sx={{
-                width: '100vw',
-                height: '100vh',
-                border: '1px solid #ccc',
-                borderRadius: '8px',
-            }}>
-            {product ? (<>ok</>) : (<>not</>)}
-        </Box>
+        <>
+            <Grid alignItems="center" container size={12}>
+                <Grid size={12}>
+                    <Item>1</Item>
+                </Grid>
+
+                <Grid container size={12}>
+                    <Grid size={6}><Item>2</Item></Grid>
+                    <Grid size={6}><Item>3</Item></Grid>
+                </Grid>
+
+            </Grid >
+        </>
     );
 }
 
