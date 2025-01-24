@@ -9,6 +9,7 @@ import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { MessageErrorContext, MessageErrorContextProps} from "@/context/auth/MessageErrorContext";
 import { useContext } from 'react';
+import Link from "next/link";
 
 export default function FormLogin() {
     const loginSchema = z.object({
@@ -83,7 +84,7 @@ export default function FormLogin() {
 
             {/* Start Terms */}
             <Box sx={customBoxTems}>
-                <Typography variant="subtitle1">By signing up you agree to our <span style={{ textDecoration: 'underline' }}>Terms</span>, <span style={{ textDecoration: 'underline' }}>Privacy Policy</span>, and <span style={{ textDecoration: 'underline' }}>Cookie Use</span></Typography>
+                <Typography color="gray" variant="subtitle1">By signing up you agree to our <Typography component={Link} href="/terms" color="white" style={{ textDecoration: 'underline' }}>Terms</Typography>, <Typography component={Link} href="/privacy-policy" color="white" style={{ textDecoration: 'underline' }}>Privacy Policy</Typography>, and <Typography component={Link} href="/cookie-policy" color="white" style={{ textDecoration: 'underline' }}>Cookie Use</Typography></Typography>
             </Box>
             {/* End Terms */}
 
