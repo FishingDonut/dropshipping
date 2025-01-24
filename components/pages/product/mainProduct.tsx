@@ -48,17 +48,7 @@ const MainProduct = () => {
         maxWidth: '270px'
     };
 
-    const customBoxMain = {
-        position: "center",
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center',
-        height: '100vh'
-    };
-
     return (
-        <Box sx={customBoxMain}>
             <Grid alignItems="center" sx={customBoxTems} container size={12}>
                 <Grid alignItems="center" container size={12}>
                     <Grid size={12}>
@@ -87,7 +77,6 @@ const MainProduct = () => {
 
                 </Grid >
             </Grid>
-        </Box>
     );
 }
 
