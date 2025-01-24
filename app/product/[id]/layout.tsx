@@ -6,12 +6,10 @@ const layout = async({
     children: React.ReactNode;
   }>) => { 
     const customBoxMain = {
-        position: "center",
         display: 'flex',
-        flexDirection: 'column',
         justifyContent: 'center',
-        alignItems: 'center',
-        height: '100vh'
+        height: '100vh',
+        width: '100vw'
     };
 
     return (
