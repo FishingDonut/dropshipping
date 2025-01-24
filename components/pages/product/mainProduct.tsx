@@ -1,6 +1,6 @@
 'use client';
 
-import { Box, Paper, styled } from "@mui/material";
+import { Box, Card, CardContent, CardMedia, Paper, styled, Typography } from "@mui/material";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import Grid from '@mui/material/Grid2';
@@ -40,21 +40,54 @@ const MainProduct = () => {
         }),
     }));
 
+    const customBoxTems = {
+        marginBottom: 16 + 'px',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        maxWidth: '270px'
+    };
+
+    const customBoxMain = {
+        position: "center",
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: '100vh'
+    };
 
     return (
-        <>
-            <Grid alignItems="center" container size={12}>
-                <Grid size={12}>
-                    <Item>1</Item>
-                </Grid>
+        <Box sx={customBoxMain}>
+            <Grid alignItems="center" sx={customBoxTems} container size={12}>
+                <Grid alignItems="center" container size={12}>
+                    <Grid size={12}>
+                        <Card sx={{ maxWidth: 345, boxShadow: 3, borderRadius: 2 }}>
+                            <CardMedia
+                                component="img"
+                                height="140"
+                                image="https://i.pcmag.com/imagery/articles/04xZdVnmvtaW72AkAZtYaBK-1.fit_lim.size_850x490.v1602461775.png"
+                                alt="okok"
+                            />
+                            <CardContent>
+                                <Typography gutterBottom variant="h5" component="div">
+                                    Produto
+                                </Typography>
+                                <Typography variant="body2" color="text.secondary">
+                                    e isso isso isso.
+                                </Typography>
+                            </CardContent>
+                        </Card>
+                    </Grid>
 
-                <Grid container size={12}>
-                    <Grid size={6}><Item>2</Item></Grid>
-                    <Grid size={6}><Item>3</Item></Grid>
-                </Grid>
+                    <Grid container size={12}>
+                        <Grid size={6}><Item>2</Item></Grid>
+                        <Grid size={6}><Item>3</Item></Grid>
+                    </Grid>
 
-            </Grid >
-        </>
+                </Grid >
+            </Grid>
+        </Box>
     );
 }
 
