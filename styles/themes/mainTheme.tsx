@@ -2,6 +2,7 @@
 
 import { createTheme } from '@mui/material/styles';
 import { ThemeProvider } from '@emotion/react';
+import { colors } from '@mui/material';
 
 export default function ThemeMain({ children }: Readonly<{
   children: React.ReactNode;
@@ -26,6 +27,16 @@ export default function ThemeMain({ children }: Readonly<{
         paper:'#151515'
       },
     },
+    components: {
+      MuiChip:{
+        styleOverrides: {
+          root: ({theme}) => ({
+            color: "white",
+            fontWeight: "bold"
+          })
+        }
+      }
+    }
   });
 
   return (<ThemeProvider theme={theme}>{children}</ThemeProvider>);
