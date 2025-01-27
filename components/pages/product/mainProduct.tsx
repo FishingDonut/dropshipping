@@ -1,10 +1,10 @@
 'use client';
 
-import { Box, Chip, Divider, IconButton, Typography } from "@mui/material";
+import { Box, Button, Chip, Divider, IconButton, Typography } from "@mui/material";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import Grid from '@mui/material/Grid2';
-import { ArrowBack, Share, FavoriteBorder, LocalActivity } from "@mui/icons-material";
+import { ArrowBack, Share, FavoriteBorder, LocalActivity, Add, Remove, Inventory } from "@mui/icons-material";
 
 const MainProduct = () => {
     const [product, setProduct] = useState<any>(null);
@@ -63,15 +63,12 @@ const MainProduct = () => {
 
                 <Grid container size={12}>
                     <Grid container size={12}>
-                        <Grid spacing={0} container display="flex" justifyContent="left" alignItems="center" size={10}>
+                        <Grid spacing={1} container display="flex" justifyContent="left" alignItems="center" size={10}>
                             <Grid>
-                                <Chip label="23.4%"></Chip>
+                                <Chip label="5" icon={<Inventory color="secondary"/>}></Chip>
                             </Grid>
                             <Grid>
-                                <IconButton><LocalActivity color="primary" /></IconButton>
-                            </Grid>
-                            <Grid>
-                                <Typography variant="body2" color="text.secondary">4.5 ( 3242 Reviews )</Typography>
+                            <Chip label="4.5 ( 3242 Reviews )" icon={<LocalActivity color="primary"/>}></Chip>
                             </Grid>
                         </Grid>
                         <Grid container size={2}>
@@ -89,15 +86,29 @@ const MainProduct = () => {
                     </Grid>
                 </Grid>
 
-                <Divider sx={{ marginY: 2}}/>
-                
-                <Grid container size={12}>
+                <Divider sx={{ marginY: 2 }} />
+
+                {/* <Grid container size={12}>
                     CATEGORIAS
+                </Grid > */}
+
+                <Grid container size={12} display="flex" alignItems="center">
+                    <Grid container size={4}><Typography fontWeight="bold">Quantity</Typography></Grid>
+                    <Grid container size={8} justifyContent="flex-end">
+                        <Button variant="outlined" size="small"><Remove /></Button>
+                        <Typography alignContent="center" fontWeight="bold">1</Typography>
+                        <Button variant="outlined" size="small"><Add /></Button>
+                    </Grid>
                 </Grid >
 
-                <Grid container size={12}>
-                    Quantity
-                </Grid >
+                <Divider sx={{ marginY: 1 }} />
+
+                    <Grid container size={12}>
+                        <Typography fontWeight="bold">R$:23,00</Typography>
+                    </Grid>
+                    <Grid container size={12}>
+                        <Button variant="contained" fullWidth size="large">Add Cart</Button>
+                    </Grid>
             </Grid >
         </Grid>
     );
