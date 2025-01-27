@@ -65,10 +65,10 @@ const MainProduct = () => {
                     <Grid container size={12}>
                         <Grid spacing={1} container display="flex" justifyContent="left" alignItems="center" size={10}>
                             <Grid>
-                                <Chip label="5" icon={<Inventory color="secondary"/>}></Chip>
+                                <Chip label="5" icon={<Inventory color="secondary" />}></Chip>
                             </Grid>
                             <Grid>
-                            <Chip label="4.5 ( 3242 Reviews )" icon={<LocalActivity color="primary"/>}></Chip>
+                                <Chip label="4.5 ( 3242 Reviews )" icon={<LocalActivity color="primary" />}></Chip>
                             </Grid>
                         </Grid>
                         <Grid container size={2}>
@@ -103,12 +103,13 @@ const MainProduct = () => {
 
                 <Divider sx={{ marginY: 1 }} />
 
-                    <Grid container size={12}>
-                        <Typography fontWeight="bold">R$:23,00</Typography>
-                    </Grid>
-                    <Grid container size={12}>
-                        <Button variant="contained" fullWidth size="large">Add Cart</Button>
-                    </Grid>
+                <Grid container size={12}>
+                    <Typography fontWeight="bold">R$:23,00</Typography>
+                </Grid>
+                
+                <Grid container size={12}>
+                    <Button variant="contained" fullWidth size="large">Add Cart</Button>
+                </Grid>
             </Grid >
         </Grid>
     );
