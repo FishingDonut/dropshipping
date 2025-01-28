@@ -28,7 +28,7 @@ const MainProduct = () => {
                 router.push('/');
             }
         }
-        // fetchProductById(1);
+        fetchProductById(1);
     }, []);
 
     const customBoxMain = {
@@ -50,7 +50,7 @@ const MainProduct = () => {
                             </IconButton>
                         </Grid>
                         <Grid display="flex" justifyContent="center" alignItems="center" size={4}>
-                            <Typography fontWeight="bold" align="center">NAME</Typography>
+                            <Typography fontWeight="bold" align="center">{ product ? product.name : "Product"}</Typography>
                         </Grid>
                         <Grid textAlign="right" size={4}>
                             <IconButton>
@@ -84,7 +84,7 @@ const MainProduct = () => {
                     <Grid container size={12}>
                         <Grid size={12}>
                             <Typography variant="h5" fontWeight="bold" align="left">Description</Typography>
-                            <Typography variant="body2" color="text.secondary" align="left">Eu sou uma descrição gerada por Inteligência Artificial, criada para fornecer exemplos, explicações ou respostas de forma clara e objetiva. Meu objetivo é ajudar você com informações precisas e úteis em diversas áreas, desde programação até temas gerais.</Typography>
+                            <Typography variant="body2" color="text.secondary" align="left">{ product ? product.description : ""}</Typography>
                         </Grid>
                     </Grid>
 
@@ -105,12 +105,12 @@ const MainProduct = () => {
 
                     <Divider sx={{ marginY: 1 }} />
 
-                    <Grid container alignItems="flex-end" size={12}>
+                    <Grid spacing={0} padding={0} container alignItems="flex-end" size={12}>
                         <Grid container justifyContent="flex-start" size={4}>
-                            <Chip label="R$:20,00"></Chip>
+                            <Chip label={`R$:${product ? (product.price * product.price_multiplier).toFixed(2) : "???,??"}`}></Chip>
                         </Grid>
                         <Grid container justifyContent="flex-start" size={3}>
-                            <Typography fontWeight="bold" variant="caption" color="textDisabled" sx={{ textDecoration: "line-through" }}>R$:44,99</Typography>
+                            <Typography fontWeight="bold" variant="caption" color="textDisabled" sx={{ textDecoration: "line-through" }}>R$:{product ? (product.price).toFixed(2) : "???,??"}</Typography>
                         </Grid>
 
                         <Grid container justifyContent="flex-end" size={2}>
