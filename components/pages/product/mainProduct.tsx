@@ -82,7 +82,7 @@ const MainProduct = () => {
 
                     <Grid container size={12}>
                         <Grid size={12}>
-                            <Typography variant="h6" fontWeight="bold" align="left">Description</Typography>
+                            <Typography variant="h5" fontWeight="bold" align="left">Description</Typography>
                             <Typography variant="body2" color="text.secondary" align="left">Eu sou uma descrição gerada por Inteligência Artificial, criada para fornecer exemplos, explicações ou respostas de forma clara e objetiva. Meu objetivo é ajudar você com informações precisas e úteis em diversas áreas, desde programação até temas gerais.</Typography>
                         </Grid>
                     </Grid>
@@ -94,7 +94,7 @@ const MainProduct = () => {
                 </Grid > */}
 
                     <Grid container size={12} display="flex" alignItems="center">
-                        <Grid container size={4}><Typography fontWeight="bold">Quantity</Typography></Grid>
+                        <Grid container size={4}><Typography fontWeight="bold" variant="h5">Quantity</Typography></Grid>
                         <Grid container size={8} justifyContent="flex-end">
                             <Button variant="outlined" size="small"><Remove /></Button>
                             <Typography alignContent="center" fontWeight="bold">1</Typography>
