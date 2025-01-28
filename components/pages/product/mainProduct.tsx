@@ -8,6 +8,7 @@ import { ArrowBack, Share, FavoriteBorder, LocalActivity, Add, Remove, Inventory
 
 const MainProduct = () => {
     const [product, setProduct] = useState<any>(null);
+    const [quantity, setQuantity] = useState<number>(1);
     const router = useRouter();
 
     useEffect(() => {
@@ -96,9 +97,11 @@ const MainProduct = () => {
                     <Grid container size={12} display="flex" alignItems="center">
                         <Grid container size={4}><Typography fontWeight="bold" variant="h5">Quantity</Typography></Grid>
                         <Grid container size={8} justifyContent="flex-end">
-                            <Button variant="outlined" size="small"><Remove /></Button>
-                            <Typography alignContent="center" fontWeight="bold">1</Typography>
-                            <Button variant="outlined" size="small"><Add /></Button>
+                            <Button onClick={() => { 
+                                quantity > 1 ? setQuantity(quantity - 1) : 0;
+                                }} variant="outlined" size="small"><Remove /></Button>
+                            <Typography alignContent="center" fontWeight="bold">{quantity}</Typography>
+                            <Button onClick={() => { setQuantity(quantity + 1)}} variant="outlined" size="small"><Add /></Button>
                         </Grid>
                     </Grid >
 
