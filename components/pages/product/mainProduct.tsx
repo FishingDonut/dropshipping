@@ -97,18 +97,16 @@ const MainProduct = () => {
                     <Grid container size={12} display="flex" alignItems="center">
                         <Grid container size={4}><Typography fontWeight="bold" variant="h5">Quantity</Typography></Grid>
                         <Grid container size={8} justifyContent="flex-end">
-                            <Button onClick={() => { 
-                                quantity > 1 ? setQuantity(quantity - 1) : 0;
-                                }} variant="outlined" size="small"><Remove /></Button>
+                            <Button onClick={() => { quantity > 1 ? setQuantity(quantity - 1) : 0; }} variant="outlined" size="small"><Remove /></Button>
                             <Typography alignContent="center" fontWeight="bold">{quantity}</Typography>
-                            <Button onClick={() => { setQuantity(quantity + 1)}} variant="outlined" size="small"><Add /></Button>
+                            <Button onClick={() => { setQuantity(quantity + 1) }} variant="outlined" size="small"><Add /></Button>
                         </Grid>
                     </Grid >
 
                     <Divider sx={{ marginY: 1 }} />
 
                     <Grid container alignItems="flex-end" size={12}>
-                    <Grid container justifyContent="flex-start" size={4}>
+                        <Grid container justifyContent="flex-start" size={4}>
                             <Chip label="R$:20,00"></Chip>
                         </Grid>
                         <Grid container justifyContent="flex-start" size={3}>
@@ -116,7 +114,7 @@ const MainProduct = () => {
                         </Grid>
 
                         <Grid container justifyContent="flex-end" size={2}>
-                            <LocalShipping/>
+                            <LocalShipping />
                         </Grid>
                         <Grid container justifyContent="flex-end" size={3}>
                             <Typography fontWeight="bold" color="primary">R$:00,00</Typography>
