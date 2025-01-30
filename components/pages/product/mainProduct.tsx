@@ -5,41 +5,7 @@ import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import Grid from '@mui/material/Grid2';
 import { ArrowBack, Share, FavoriteBorder, LocalActivity, Add, Remove, Inventory, LocalShipping } from "@mui/icons-material";
-
-interface IOptions {
-    [key: string]: (string | number)[];
-}
-interface IField {
-    id: number,
-    category_id: number,
-    name: string,
-    type: string,
-    options?: IOptions,
-    created_at: string,
-    updated_at: string
-}
-
-interface IFieldValues {
-    id: number,
-    field_id: number,
-    product_id: number,
-    value: number | string,
-    created_at: string,
-    updated_at: string,
-    field?: IField
-}
-
-interface IProduct {
-    id: number,
-    name: string,
-    price: number,
-    price_multiplier: number,
-    description: string,
-    deleted_at?: null | string,
-    created_at: string,
-    updated_at: string,
-    field_values?: IFieldValues[]
-}
+import { IProduct } from "./interfaces/IProduct";
 
 const MainProduct = ({ id }: {id: number}) => {
     const [product, setProduct] = useState<IProduct>();
