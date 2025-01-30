@@ -2,12 +2,47 @@
 
 import { Box, Button, Chip, Divider, IconButton, Typography } from "@mui/material";
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Grid from '@mui/material/Grid2';
 import { ArrowBack, Share, FavoriteBorder, LocalActivity, Add, Remove, Inventory, LocalShipping } from "@mui/icons-material";
 
-const MainProduct = () => {
-    const [product, setProduct] = useState<any>(null);
+interface IOptions {
+    [key: string]: (string | number)[];
+}
+interface IField {
+    id: number,
+    category_id: number,
+    name: string,
+    type: string,
+    options?: IOptions,
+    created_at: string,
+    updated_at: string
+}
+
+interface IFieldValues {
+    id: number,
+    field_id: number,
+    product_id: number,
+    value: number | string,
+    created_at: string,
+    updated_at: string,
+    field?: IField
+}
+
+interface IProduct {
+    id: number,
+    name: string,
+    price: number,
+    price_multiplier: number,
+    description: string,
+    deleted_at?: null | string,
+    created_at: string,
+    updated_at: string,
+    field_values?: IFieldValues[]
+}
+
+const MainProduct = ({ id }: {id: number}) => {
+    const [product, setProduct] = useState<IProduct>();
     const [quantity, setQuantity] = useState<number>(1);
     const router = useRouter();
 
@@ -28,8 +63,8 @@ const MainProduct = () => {
                 router.push('/');
             }
         }
-        fetchProductById(1);
-    }, []);
+        fetchProductById(id);
+    }, [id, router]);
 
     const customBoxMain = {
         marginBottom: 0 + 'px',
@@ -50,7 +85,7 @@ const MainProduct = () => {
                             </IconButton>
                         </Grid>
                         <Grid display="flex" justifyContent="center" alignItems="center" size={4}>
-                            <Typography fontWeight="bold" align="center">{ product ? product.name : "Product"}</Typography>
+                            <Typography fontWeight="bold" align="center">{product ? product.name : "Product"}</Typography>
                         </Grid>
                         <Grid textAlign="right" size={4}>
                             <IconButton>
@@ -84,21 +119,34 @@ const MainProduct = () => {
                     <Grid container size={12}>
                         <Grid size={12}>
                             <Typography variant="h5" fontWeight="bold" align="left">Description</Typography>
-                            <Typography variant="body2" color="text.secondary" align="left">{ product ? product.description : ""}</Typography>
+                            <Typography variant="body2" color="text.secondary" align="left">{product ? product.description : ""}</Typography>
                         </Grid>
                     </Grid>
 
                     <Divider sx={{ marginY: 2 }} />
 
-                    {/* <Grid container size={12}>
-                    CATEGORIAS
-                </Grid > */}
+                    <Grid container size={12} display="flex" alignItems="center">
+                        {product && product?.field_values?.map((fieldValue, index: number) => (
+                            fieldValue.field ? (
+                                <React.Fragment key={index}>
+                                    <Grid size={12}>
+                                        <Typography variant="h5" fontWeight="bold" align="left">{fieldValue.field.name}</Typography>
+                                    </Grid>
+                                    {Object.entries(fieldValue?.field?.options ?? {}).map(([key, value]) => (
+                                        <Button key={key} variant="outlined" size="small">{String(value)}</Button>
+                                    ))}
+                                </React.Fragment>
+                            ) : null
+                        ))}
+                    </Grid>
+
+                    <Divider sx={{ marginY: 2 }} />
 
                     <Grid container size={12} display="flex" alignItems="center">
                         <Grid container size={4}><Typography fontWeight="bold" variant="h5">Quantity</Typography></Grid>
                         <Grid container size={8} justifyContent="flex-end">
-                            <Button onClick={() => { quantity > 1 ? setQuantity(quantity - 1) : 0; }} variant="outlined" size="small"><Remove /></Button>
-                            <Typography alignContent="center" fontWeight="bold">{quantity}</Typography>
+                        <Button onClick={() => { if (quantity > 1) setQuantity(quantity - 1); }} variant="outlined" size="small"><Remove /></Button>
+                        <Typography alignContent="center" fontWeight="bold">{quantity}</Typography>
                             <Button onClick={() => { setQuantity(quantity + 1) }} variant="outlined" size="small"><Add /></Button>
                         </Grid>
                     </Grid >
@@ -107,7 +155,7 @@ const MainProduct = () => {
 
                     <Grid spacing={0} padding={0} container alignItems="flex-end" size={12}>
                         <Grid container justifyContent="flex-start" size={4}>
-                            <Chip label={`R$:${product ? (product.price * product.price_multiplier).toFixed(2) : "???,??"}`}></Chip>
+                            <Chip label={`R$:${product ? (Number(product.price) * Number(product.price_multiplier)).toFixed(2) : "???,??"}`}></Chip>
                         </Grid>
                         <Grid container justifyContent="flex-start" size={3}>
                             <Typography fontWeight="bold" variant="caption" color="textDisabled" sx={{ textDecoration: "line-through" }}>R$:{product ? (product.price).toFixed(2) : "???,??"}</Typography>
